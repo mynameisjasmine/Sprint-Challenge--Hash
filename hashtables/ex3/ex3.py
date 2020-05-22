@@ -5,24 +5,25 @@ def intersection(arrays):
     """
     YOUR CODE HERE
     """
-    #changing the array of arrays to a dict, with the indexes as keys and the arrays as values
-    dict_list = {}
 
-    for i in arrays:
-        dict_list[i[0]] = i[0:]
-        return dict_list
+    arrays.sort(key=lambda s:len(s))
+    result = []
+    arr_obj = {}
+
+    for y, i in enumerate(arrays):
+        for i in i:
+            if i in arr_obj:
+                arr_obj[i].append(i)
+            elif y == 0:
+                arr_obj[i] = [i]
+
+    for index, value in arr_obj.items():
+        if len(value) == len(arrays):
+            result.append(index)
 
 
-    
-    # arrays = Counter(arrays)
-    # new_hash = dict(arrays.items())
-    # result = []
 
-    # for (key, val) in new_hash.items():
-    #     for i in range(0, val):
-    #         result.append(key[i])
-
-    # return result
+    return result
 
 
 if __name__ == "__main__":
